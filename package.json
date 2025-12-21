@@ -1,0 +1,22 @@
+{
+  "name": "moko-reader",
+  "version": "1.0.0",
+  "description": "An EPUB and CBZ reader.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jszip": "^3.10.1",
+    "sharp": "^0.34.3",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "electron": "^31.2.1",
+    "electron-builder": "^25.0.0"
+  }
+}

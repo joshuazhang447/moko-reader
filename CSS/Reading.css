@@ -1,0 +1,223 @@
+/* --- THEME VARIABLES --- */
+:root {
+    --font-serif: 'Georgia', 'Times New Roman', serif;
+    --font-sans: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    --bg-light: #e8e8e8;
+    --surface-light: #ffffff;
+    --text-primary-light: #212121;
+    --text-secondary-light: #5f5f5f;
+    --ui-bg-light: rgba(255, 255, 255, 0.7);
+    --border-light: rgba(0, 0, 0, 0.1);
+    --shadow-color-light: rgba(0, 0, 0, 0.15);
+    --bg-dark: #121212;
+    --surface-dark: #1e1e1e;
+    --text-primary-dark: #e0e0e0;
+    --text-secondary-dark: #9e9e9e;
+    --ui-bg-dark: rgba(24, 24, 24, 0.7);
+    --border-dark: rgba(255, 255, 255, 0.12);
+    --shadow-color-dark: rgba(0, 0, 0, 0.6);
+}
+
+/* --- BASE STYLES --- */
+body {
+    margin: 0;
+    font-family: var(--font-sans);
+    overflow: hidden; 
+    transition: background-color 0.3s, color 0.3s;
+}
+body.light-theme { background-color: var(--bg-light); }
+body.dark-theme { background-color: var(--bg-dark); }
+
+/* --- UI HOVER ZONES --- */
+.hover-zone { position: fixed; left: 0; right: 0; height: 10vh; z-index: 999; }
+.hover-zone.top { top: 0; }
+.hover-zone.bottom { bottom: 0; }
+
+/* --- LAYOUT CONTAINERS --- */
+.reader-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.reader-container::-webkit-scrollbar { display: none; }
+
+.zoom-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 5vh 2vw;
+    width: 100%;
+    min-height: 100%;
+    box-sizing: border-box;
+}
+
+/* --- MAIN VIEWER AREA (EPUB) --- */
+.viewer-main {
+    width: 90vw;
+    max-width: 1800px;
+    height: 90vh;
+    position: relative;
+    flex-shrink: 0; 
+}
+body.light-theme .viewer-main { box-shadow: 0 10px 40px var(--shadow-color-light); }
+body.dark-theme .viewer-main { box-shadow: 0 10px 40px var(--shadow-color-dark); }
+
+body.one-page-view .viewer-main {
+    width: 45vw;
+    max-width: 900px;
+    transition: width 0.4s ease-in-out;
+}
+
+/* --- HEADER, FOOTER, AND UI CONTROLS --- */
+.reader-header, .reader-footer {
+    position: fixed;
+    left: 24px; right: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 20px;
+    border-radius: 12px;
+    z-index: 1000;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateY(-150%);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    pointer-events: none;
+}
+.reader-footer { transform: translateY(150%); }
+.reader-header { top: 16px; }
+.reader-footer { bottom: 16px; }
+body.ui-visible .reader-header,
+body.ui-visible .reader-footer { opacity: 1; transform: translateY(0); pointer-events: auto; }
+body.light-theme .reader-header, body.light-theme .reader-footer { background-color: var(--ui-bg-light); border: 1px solid var(--border-light); }
+body.dark-theme .reader-header, body.dark-theme .reader-footer { background-color: var(--ui-bg-dark); border: 1px solid var(--border-dark); }
+
+.reader-title {
+    flex: 2;
+    text-align: center;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+body.light-theme .reader-title { color: var(--text-secondary-light); }
+body.dark-theme .reader-title { color: var(--text-primary-dark); }
+
+.header-section { display: flex; align-items: center; gap: 8px; }
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+a.icon-btn, body.dark-theme .icon-btn { color: var(--text-secondary-dark); }
+body.light-theme .icon-btn { color: var(--text-secondary-light); }
+body.dark-theme .icon-btn:hover { background-color: rgba(255, 255, 255, 0.1); }
+body.light-theme .icon-btn:hover { background-color: rgba(0, 0, 0, 0.08); }
+.icon-btn svg { stroke: currentColor; }
+a.icon-btn svg { fill: currentColor; stroke: none; }
+
+.zoom-controls { display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
+.zoom-controls input[type="range"] { width: 120px; cursor: pointer; }
+.zoom-controls span { font-size: 12px; min-width: 35px; text-align: right; }
+
+/* --- NAVIGATION ARROWS --- */
+.nav-arrow {
+    position: fixed;
+    top: 0; bottom: 0;
+    width: 10%;
+    max-width: 100px;
+    z-index: 900;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s, background-color 0.3s;
+}
+.nav-arrow svg { width: 48px; height: 48px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+.reader-container:hover .nav-arrow { opacity: 0.3; }
+.nav-arrow:hover { opacity: 1; background-color: rgba(128, 128, 128, 0.1); }
+body.dark-theme .nav-arrow svg { color: var(--text-primary-dark); }
+body.light-theme .nav-arrow svg { color: var(--text-primary-light); }
+.nav-arrow.left { left: 0; justify-content: flex-start; }
+.nav-arrow.right { right: 0; justify-content: flex-end; }
+
+/* --- EPUB RENDERER --- */
+#epub-viewer { width: 100%; height: 100%; display: flex; overflow: hidden; }
+body.light-theme #epub-viewer { background: var(--surface-light); }
+body.dark-theme #epub-viewer { background: var(--surface-dark); }
+#epub-viewer iframe { background: transparent !important; }
+body.light-theme #epub-viewer iframe html { background: var(--surface-light) !important; color: var(--text-primary-light) !important; }
+body.dark-theme #epub-viewer iframe html { background: var(--surface-dark) !important; color: var(--text-primary-dark) !important; }
+#epub-viewer iframe html { font-family: var(--font-serif) !important; padding: 4vh 4vw !important; }
+
+/* --- CBZ RENDERER: NEW INTERACTIVE CANVAS STYLES --- */
+#cbz-viewer {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    gap: 2px;
+}
+
+.cbz-page {
+    flex: 1;
+    overflow: hidden; /* This is the viewport for the zoom */
+    position: relative;
+    background-color: var(--bg-dark);
+    cursor: grab;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cbz-page.grabbing { cursor: grabbing; }
+
+.cbz-image-container {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.05s ease-out; /* Slight smoothing for panning */
+}
+
+.cbz-page img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none; /* Prevent browser's native image drag */
+}
+
+body.light-theme .cbz-page { background-color: var(--bg-light); }
+body.dark-theme .cbz-page { background-color: var(--bg-dark); }
+body.one-page-view .cbz-page.left { display: none; }
+
+/* --- FOOTER UI ELEMENTS --- */
+.footer-section { flex: 1; font-family: var(--font-sans); font-size: 13px; text-align: right; }
+.footer-section.chapter-info { text-align: left; }
+.footer-section.progress-container { display: flex; align-items: center; gap: 16px; justify-content: center; }
+body.light-theme .footer-section { color: var(--text-secondary-light); }
+body.dark-theme .footer-section { color: var(--text-secondary-dark); }
+
+.progress-bar {
+    width: 50%;
+    max-width: 400px;
+    height: 4px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+}
+body.dark-theme .progress-bar { background-color: rgba(255, 255, 255, 0.3); }
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+body.light-theme .progress-bar-fill { background-color: var(--text-primary-light); }
+body.dark-theme .progress-bar-fill { background-color: var(--text-primary-dark); }
