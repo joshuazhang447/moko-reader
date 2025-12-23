@@ -1,12 +1,14 @@
 # Moko Reader 📚
 
-A full-fledged, dynamic reader application designed for a seamless reading experience for both text-based books and comics. Moko Reader features a modern UI, lazy loading for performance, and extensive customization options.
 
 **[🚀 Live Demo](https://moko-reader-brwon2ozf-joshuazhang447s-projects.vercel.app/)**
 
+
 ---
 
-## 📸 Gallery
+A full-fledged, dynamic reader application designed for a seamless reading experience for both text-based books and comics. Moko Reader features a modern UI, lazy loading for performance, and extensive customization options.
+
+## Gallery
 
 ![Library Interface](https://i.imgur.com/HAWJejP.png)
 
@@ -21,11 +23,11 @@ A full-fledged, dynamic reader application designed for a seamless reading exper
 
 ---
 
-## ✨ Features
+## Features
 
 Moko Reader is built for versatility and ease of use:
 
-### 📖 Immersive Reading
+### Immersive Reading
 *   **Dynamic View Modes:** Switch seamlessly between **Single Page** and **Two-Page** spreads. Perfect for traditional books and manga/comics.
 *   **Lazy Loading:** Optimized performance that loads content dynamically as you scroll, ensuring fast load times even for large files.
 *   **Zoom & Scaling:**
@@ -33,11 +35,11 @@ Moko Reader is built for versatility and ease of use:
     *   **Scroll Wheel Zoom:** Hold and scroll to dynamically zoom in on specific details (great for comic panels).
     *   Scrubbing bar for quick navigation.
 
-### 🎨 Visual Customization
+### Visual Customization
 *   **Theme Support:** Toggle between **Light Mode** and **Dark Mode** to suit your environment and reduce eye strain.
 *   **Responsive Layout:** Automatically adjusts to your window size.
 
-### 🗂️ Library Management
+### Library Management
 *   **Folder Organization:** Content is automatically organized into categories (e.g., Books, Comics).
 *   **Search Functionality:**
     *   **Global Search:** Find any title in your library instantly.
@@ -46,7 +48,7 @@ Moko Reader is built for versatility and ease of use:
 
 ---
 
-## ⚖️ Copyright & Content Disclaimer
+## Copyright & Content Disclaimer
 
 **Please Note:**
 This repository and the live demo do **not** host or distribute any unauthorized copyrighted material.
@@ -55,7 +57,7 @@ This repository and the live demo do **not** host or distribute any unauthorized
 
 ---
 
-## 🛠️ Installation & Setup
+## Installation & Setup
 
 To run Moko Reader locally:
 
@@ -81,7 +83,7 @@ To run Moko Reader locally:
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are super duper welcome! If you have suggestions for new features or improvements, feel free to open an issue or submit a pull request.
 
@@ -90,3 +92,6 @@ Contributions are super duper welcome! If you have suggestions for new features 
 3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4.  Push to the Branch (`git push origin feature/AmazingFeature`)
 5.  Open a Pull Request
+
+## Author
+Joshua Z
